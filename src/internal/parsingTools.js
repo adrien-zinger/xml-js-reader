@@ -9,7 +9,7 @@ const helper = require('./prototyping')
 function popNextXmlStr(content) {
   const indexOf = (str) => content.indexOf(str)
   if (content.match(/^[\s]*<\//g)) return [content, null]
-  const objStarts = content.match(/<[a-z]+/g)
+  const objStarts = content.match(/<[\w-]+/g)
   if (objStarts === null) return [content, null]
   // detect inline objects
   const objStart = objStarts[0]
@@ -21,7 +21,7 @@ function popNextXmlStr(content) {
   if (obj === null) {
     throw Error(`Cannot completely pull the object ${objStart}`)
   }
-  return [content.slice(obj[0].length + 1), obj[0]]
+  return [content.slice(indexOf(objStart) + obj[0].length), obj[0]]
 }
 
 function mapChildrenStr(xmlTag, xmlStr, cb) {
@@ -41,7 +41,11 @@ function parseParams(str) {
   const params = {}
   if (str)
     for (const param of str) {
-      const [, key, value] = param.match(/([^=]+)="([^"]+)"/)
+      const group = param.match(/([^=]+)="([^"]*)"/)
+      if (group === null) {
+        throw Error(`Parsing: Unable to parse a parameter ${param}`)
+      }
+      const [, key, value] = group
       params[key] = value
     }
   return params

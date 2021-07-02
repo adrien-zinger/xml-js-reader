@@ -1,0 +1,22 @@
+{
+  "parserOptions": {
+      "ecmaVersion": 2017
+  },
+  "rules": {
+    "no-undef": "error",
+    "global-require":"off",
+    "no-unused-vars": "error",
+    "space-before-blocks": "warn"
+  },
+  "env": {
+      "es6": false,
+      "jest/globals": true
+  },
+  "globals": {
+    "require": true,
+    "Promise": true,
+    "module": true,
+    "__dirname": true,
+    "console": true
+  }
+}

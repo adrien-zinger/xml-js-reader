@@ -70,6 +70,12 @@ function getParam(content) {
 }
 
 //@todo remove recursion and get buffer instead of string in input
+
+/**
+ * 
+ * @param {string} xmlStr XML string
+ * @returns {import('./prototyping').XMLJS}
+ */
 function toJs(xmlStr) {
   const ret = {}
   const { params, xmlTag, tag } = getParam(xmlStr)

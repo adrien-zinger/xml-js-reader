@@ -62,7 +62,7 @@ function getParam(content) {
     ret.xmlTag = inline[0]
   } else {
     // parent case
-    let paramsStr = content.match(`${objStart} [^>]+?>`, 'g') // get the full tag
+    let paramsStr = content.match(`${objStart}[^>]*?>`, 'g') // get the full tag
     ret.params = parseParams(paramsStr[0].match(/[^=\s]+="[^"]*?"/gm))
     ret.xmlTag = paramsStr[0]
   }

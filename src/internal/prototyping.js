@@ -10,6 +10,7 @@
  * @property {filter} filter Filter a list of XMLJS from this root
  * @property {findByTag} findByTag Filter a list of XMLJS by tag from this root
  * @property {findByParam} findByParam Filter a list of XMLJS by tag from this root
+ * @property {findByPath} findByPath Filter a list of XMLJS by tag path from this root
  */
 
 /**
@@ -31,6 +32,12 @@
  * @returns {XMLJS[]}
  */
 
+/**
+ * @callback findByPath
+ * @param {Array<string>} path Array of tags
+ * @returns {XMLJS[]}
+ */
+
 module.exports = {
   filter(cb) {
     const ret = []
@@ -47,5 +54,29 @@ module.exports = {
   },
   findByParam(key, value) {
     return this.filter((obj) => obj.params && obj.params[key] && obj.params[key] === value)
-  }
+  },
+  findByPath(path) {
+    const ret = []
+    let queue = [this]
+    const paths = new WeakMap()
+    paths.set(this, [])
+    while (queue.length > 0) {
+      const current = queue.pop()
+      const currentPath = paths.get(current)
+      currentPath.push(current.tag)
+      if (currentPath.length > path.length) continue
+      let equals = true
+      for (let i = 0; equals && i < path.length; ++i)
+        equals = path[i] === currentPath[i]
+      if (equals && currentPath.length == path.length) {
+        ret.push(current)
+        continue
+      }
+      paths.set(current, currentPath)
+      for (const child of current.children)
+        paths.set(child, [ ...currentPath ])
+      queue = queue.concat(current.children)
+    }
+    return ret
+  },
 }

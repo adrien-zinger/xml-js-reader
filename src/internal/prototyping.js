@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @typedef XMLJS
  * @type {object}
  * @property {object} params Parameters in the xml balise
@@ -53,7 +53,9 @@ module.exports = {
     return this.filter((obj) => obj.tag === tag)
   },
   findByParam(key, value) {
-    return this.filter((obj) => obj.params && obj.params[key] && obj.params[key] === value)
+    return this.filter(
+      (obj) => obj.params && obj.params[key] && obj.params[key] === value
+    )
   },
   findByPath(path) {
     const ret = []
@@ -73,8 +75,7 @@ module.exports = {
         continue
       }
       paths.set(current, currentPath)
-      for (const child of current.children)
-        paths.set(child, [ ...currentPath ])
+      for (const child of current.children) paths.set(child, [...currentPath])
       queue = queue.concat(current.children)
     }
     return ret

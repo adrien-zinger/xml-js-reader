@@ -1,4 +1,4 @@
-const { toJs } = require("../src/internal/parsingTools")
+const { toJs } = require('../src/internal/parsingTools')
 
 test('Check if we can transform to js 1', () => {
   const content = `<gu ok="one" nok="two"/>`

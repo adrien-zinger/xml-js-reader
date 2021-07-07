@@ -1,6 +1,4 @@
-const {
-  getParam,
-} = require('../src/internal/parsingTools')
+const { getParam } = require('../src/internal/parsingTools')
 
 test('Check if we can get a inline object', () => {
   let params = getParam('<gu ok="one" nok="two" />')

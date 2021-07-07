@@ -20,7 +20,7 @@ function popNextXmlStr(content) {
   const end = content.match(/^[\s]*<\//g)
   if (end) {
     return {
-      xml_content: content
+      xml_content: content,
     }
   }
   const objStarts = content.match(/<[\w-]+/g)
@@ -30,7 +30,7 @@ function popNextXmlStr(content) {
       const endtag = content.match(/<\/[\w-]+/g)
       return {
         xml_content: '',
-        xml_pop_text: content.slice(0, content.indexOf(endtag)).trim()
+        xml_pop_text: content.slice(0, content.indexOf(endtag)).trim(),
       }
     }
     return { xml_content: '' } // nothing to return
@@ -40,7 +40,7 @@ function popNextXmlStr(content) {
     if (text !== '') {
       return {
         xml_content: content.slice(content.indexOf(objStarts)),
-        xml_pop_text: text
+        xml_pop_text: text,
       }
     }
   }
@@ -57,7 +57,7 @@ function popNextXmlStr(content) {
   }
   return {
     xml_content: content.slice(indexOf(objStart) + obj[0].length),
-    xml_pop_object: obj[0]
+    xml_pop_object: obj[0],
   }
 }
 
@@ -69,10 +69,10 @@ function popNextXmlStr(content) {
  */
 
 /**
- * 
+ *
  * @param {*} xmlTag Tag of the given plain text xml
  * @param {string} xmlStr should be plain text xml
- * @param {mapEachChildren} cb 
+ * @param {mapEachChildren} cb
  * @returns {Array} list of mapped
  */
 function mapChildrenStr(xmlTag, xmlStr, cb) {
@@ -82,7 +82,7 @@ function mapChildrenStr(xmlTag, xmlStr, cb) {
     let next = popNextXmlStr(children);
     next.xml_pop_object != undefined || next.xml_pop_text != undefined;
     ret.push(cb(next)),
-      children = next.xml_content,   // on peu wrap ces deux ligne ?
+      children = next.xml_content, // on peu wrap ces deux ligne ?
       next = popNextXmlStr(children)
   );
   return ret
@@ -127,8 +127,8 @@ function getParam(content) {
 //@todo remove recursion (transform xmlToJsBuid to a generator)
 
 /**
- * 
- * @param {nextXml} nextXml 
+ *
+ * @param {nextXml} nextXml
  */
 function xmlToJsBuild(nextXml) {
   const ret = {}
@@ -151,7 +151,7 @@ function xmlToJsBuild(nextXml) {
 }
 
 /**
- * 
+ *
  * @param {string} xmlStr XML string
  * @returns {import('./prototyping').XMLJS}
  */

@@ -85,3 +85,15 @@ test('Check if we can get childen str 7', () => {
   )
   expect(res.join('')).toBe(children)
 })
+
+test('Check if we can get childen str 8', () => {
+  const children = '<mo:ok bar="ko" ma="ko"></mo:ok>'
+  const content = `<gu:ok ok="one" nok="two">${children}</gu:ok>`
+  let params = getParam(content)
+  const res = mapChildrenStr(
+    params.xmlTag,
+    content,
+    ({ xml_pop_object }) => xml_pop_object
+  )
+  expect(res.join('')).toBe(children)
+})

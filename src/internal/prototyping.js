@@ -6,6 +6,7 @@
  * @property {string} tag Tag value
  * @property {string} xmlTag String containing the parsed xml balise
  * @property {XMLJS[]} children List of children
+ * @property {string} text If child is plain text print this and the rest is empty
  * @property {filter} filter Filter a list of XMLJS from this root
  * @property {findByTag} findByTag Filter a list of XMLJS by tag from this root
  * @property {findByParam} findByParam Filter a list of XMLJS by tag from this root

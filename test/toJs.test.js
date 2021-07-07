@@ -139,3 +139,32 @@ test('Check if we can transform to js 5', () => {
     ],
   })
 })
+
+test('Check if we can transform to js 6', () => {
+  const content = `<gu:ok ok="one" nok="two"/>`
+  const js = toJs(content)
+  expect(js).toStrictEqual({
+    tag: 'gu:ok',
+    xmlTag: content,
+    params: { ok: 'one', nok: 'two' },
+    children: [],
+  })
+})
+
+test('Check if we can transform to js 7', () => {
+  const content = `<gu:ok ok="one" nok="two"><ma:ok ok="three" nok="four"></ma:ok></gu:ok>`
+  const js = toJs(content)
+  expect(js).toStrictEqual({
+    tag: 'gu:ok',
+    xmlTag: '<gu:ok ok="one" nok="two">',
+    params: { ok: 'one', nok: 'two' },
+    children: [
+      {
+        tag: 'ma:ok',
+        xmlTag: '<ma:ok ok="three" nok="four">',
+        params: { ok: 'three', nok: 'four' },
+        children: [],
+      },
+    ],
+  })
+})

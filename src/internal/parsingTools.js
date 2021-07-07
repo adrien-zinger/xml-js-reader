@@ -1,5 +1,6 @@
 const helper = require('./prototyping')
 
+const startRegex = /<[\w-\:]+/g
 /**
  * @typedef {nextXml}
  * @type {object}
@@ -23,7 +24,7 @@ function popNextXmlStr(content) {
       xml_content: content,
     }
   }
-  const objStarts = content.match(/<[\w-]+/g)
+  const objStarts = content.match(startRegex)
   // Check if there is a text before
   if (objStarts === null) {
     if (content.length > 0) {
@@ -105,7 +106,7 @@ function parseParams(str) {
 function getParam(content) {
   const ret = {}
   const indexOf = (str) => content.indexOf(str)
-  const objStarts = content.match(/<[a-z]+/g)
+  const objStarts = content.match(startRegex)
   if (objStarts === null) throw Error(`Cannot get info object ${content}`)
   // detect inline objects
   const objStart = objStarts[0]

@@ -46,3 +46,9 @@ test('Check if we can get a inline object 6', () => {
   expect(params.tag).toBe('gu')
   expect(params.params).toStrictEqual({ ok: 'one', nok: 'two' })
 })
+
+test('Check if we can get a inline object 7', () => {
+  let params = getParam(`<gu:ok ok="one" nok="two"/>`)
+  expect(params.tag).toBe('gu:ok')
+  expect(params.params).toStrictEqual({ ok: 'one', nok: 'two' })
+})

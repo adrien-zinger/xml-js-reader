@@ -9,8 +9,8 @@ test('Check if we can get by tag 1', () => {
       params: { ok: 'three', nok: 'four' },
       xmlTag: '<ma ok="three" nok="four">',
       tag: 'ma',
-      children: []
-    }
+      children: [],
+    },
   ])
 })
 
@@ -23,8 +23,8 @@ test('Check if we can get by param 1', () => {
       params: { ok: 'three', nok: 'four' },
       xmlTag: '<ma ok="three" nok="four">',
       tag: 'ma',
-      children: []
-    }
+      children: [],
+    },
   ])
 })
 
@@ -43,10 +43,10 @@ test('Check if we can get by path 1', () => {
           xmlTag: '',
           tag: '',
           children: [],
-          text: 'the graal'
-        }
-      ]
-    }
+          text: 'the graal',
+        },
+      ],
+    },
   ])
 })
 
@@ -65,9 +65,9 @@ test('Check if we can get by path 2', () => {
           xmlTag: '',
           tag: '',
           children: [],
-          text: 'the graal again !'
-        }
-      ]
+          text: 'the graal again !',
+        },
+      ],
     },
     {
       params: {},
@@ -79,10 +79,10 @@ test('Check if we can get by path 2', () => {
           xmlTag: '',
           tag: '',
           children: [],
-          text: 'the graal'
-        }
-      ]
-    }
+          text: 'the graal',
+        },
+      ],
+    },
   ])
 })
 
@@ -101,9 +101,9 @@ test('Check if we can get by path 3', () => {
           xmlTag: '',
           tag: '',
           children: [],
-          text: 'this'
-        }
-      ]
-    }
+          text: 'this',
+        },
+      ],
+    },
   ])
 })

@@ -14,6 +14,16 @@
  */
 
 /**
+ *
+ * @typedef XMLJS_LIGHT
+ * @type {object}
+ * @property {object} params Parameters in the xml balise
+ * @property {string} tag Tag value
+ * @property {XMLJS_LIGHT[]} children List of children
+ * @property {string} text If child is plain text print this and the rest is empty
+ */
+
+/**
  * @callback filter
  * @param {function} cb return true if you want the value, false otherwise
  * @returns {XMLJS[]}

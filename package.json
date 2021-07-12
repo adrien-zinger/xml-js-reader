@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adrien-zinger/xml-js-reader"
+  },
   "scripts": {
     "deliv": "node delivery-creator/delivery-gen.js",
     "clean": "rm delivery-creator/output/*.xml",
@@ -11,8 +15,9 @@
     "test": "jest"
   },
   "dependencies": {
+  },
+  "devDependencies": {
     "@types/jest": "^26.0.23",
-    "axios": "^0.21.1",
     "eslint": "^7.28.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.1"

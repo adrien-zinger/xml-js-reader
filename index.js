@@ -1,5 +1,6 @@
-const { toJs } = require('./src')
+const { toJs, toXml } = require('./src')
 
 module.exports = {
   toJs,
+  toXml,
 }

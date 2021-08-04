@@ -48,14 +48,50 @@
  * @returns {XMLJS[]}
  */
 
+function corresponds(a, b) {
+  if (a.params)
+    for (const k of Object.keys(a.params)) if (a[k] !== b[k]) return false
+  if (a.tag && a.tag !== b.tag) return false
+  return true
+}
+
 module.exports = {
+  reset(element) {
+    this.params = element.params
+    this.tag = element.tag
+    this.xmlTag = element.xmlTag
+    this.children = element.children
+    this.text = element.text
+  },
+  toString() {
+    return JSON.stringify(this, null, 2)
+  },
+  replace(element, to) {
+    if (corresponds(element, this)) {
+      if (to.length)
+        throw Error('You cannot assign this with another structure')
+      else return this.reset(to)
+    }
+    if (!to.length) to = [to]
+    this.filter((el) => {
+      for (var i = 0; el.children && i < el.children.length; ++i) {
+        if (corresponds(element, el.children[i])) {
+          el.children = [
+            ...el.children.slice(0, i),
+            ...to,
+            ...el.children.slice(i + 1),
+          ]
+        }
+      }
+    })
+  },
   filter(cb) {
     const ret = []
     let queue = [this]
     while (queue.length > 0) {
       const current = queue.pop()
       if (cb(current)) ret.push(current)
-      queue = queue.concat(current.children.reverse())
+      queue = queue.concat(current.children.slice().reverse())
     }
     return ret
   },

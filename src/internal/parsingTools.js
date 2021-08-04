@@ -47,7 +47,7 @@ function popNextXmlStr(content) {
   }
   // detect inline objects
   const objStart = objStarts[0]
-  const inline = content.match(`${objStart}[^<]+\/>`)
+  const inline = content.match(`${objStart}[^<]*\/>`)
   if (inline !== null && indexOf(inline[0]) === indexOf(objStart)) {
     return {
       xml_content: content.slice(inline[0].length),

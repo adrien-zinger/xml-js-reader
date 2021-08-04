@@ -1,6 +1,6 @@
 {
   "name": "xml-js-reader",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "repository": {
@@ -8,9 +8,6 @@
     "url": "https://github.com/adrien-zinger/xml-js-reader"
   },
   "scripts": {
-    "deliv": "node delivery-creator/delivery-gen.js",
-    "clean": "rm delivery-creator/output/*.xml",
-    "install-workflow": "yarn install --cwd 'workflow'",
     "prettify": "prettier --write '{,!(node_modules)/**/}*.js'",
     "test": "jest"
   },

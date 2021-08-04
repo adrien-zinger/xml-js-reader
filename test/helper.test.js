@@ -1,3 +1,4 @@
+const { toXml } = require('../src')
 const { toJs } = require('../src/internal/parsingTools')
 
 test('Check if we can get by tag 1', () => {
@@ -122,4 +123,20 @@ test('Test filter order', () => {
   let res = ''
   js.filter((el) => res += el.tag)
   expect(res).toBe('abcdef')
+})
+
+test('Modify object', () => {
+  const content = `<a>
+    <b>this</b>
+    <c>
+      <d>not the graal</d>
+    </c>
+    <e>
+      <f>not the graal again !</f>
+    </e>
+  </a>`
+  const js = toJs(content)
+  const e = js.filter((el) => el.tag == 'e')[0]
+  e.params = { ok: 'ok' }
+  expect(toXml(js)).toBe('<a> <e ok=\"ok\"> <f> not the graal again ! </f> </e><c> <d> not the graal </d> </c><b> this </b> </a>')
 })

@@ -127,6 +127,8 @@ js.findByPath(['a', 'b', 'c'])
 - `findByParam` Return all elements from the root where param is the first arguments and the value is the second.
 - `findByPath` Return all elements from the root where the path of tags to access is the ordered list of strings.
 
+The filter function respect the order of occurences from top to bottom.
+
 ## Bug report
 
 You can contribute to this project, report issues and propose features.

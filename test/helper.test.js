@@ -107,3 +107,19 @@ test('Check if we can get by path 3', () => {
     },
   ])
 })
+
+test('Test filter order', () => {
+  const content = `<a>
+    <b>this</b>
+    <c>
+      <d>not the graal</d>
+    </c>
+    <e>
+      <f>not the graal again !</f>
+    </e>
+  </a>`
+  const js = toJs(content)
+  let res = ''
+  js.filter((el) => res += el.tag)
+  expect(res).toBe('abcdef')
+})

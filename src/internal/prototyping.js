@@ -55,7 +55,7 @@ module.exports = {
     while (queue.length > 0) {
       const current = queue.pop()
       if (cb(current)) ret.push(current)
-      queue = queue.concat(current.children)
+      queue = queue.concat(current.children.reverse())
     }
     return ret
   },

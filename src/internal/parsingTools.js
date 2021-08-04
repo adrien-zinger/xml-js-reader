@@ -49,7 +49,10 @@ function popNextXmlStr(content) {
   const objStart = objStarts[0]
   const inline = content.match(`${objStart}[^<]+\/>`)
   if (inline !== null && indexOf(inline[0]) === indexOf(objStart)) {
-    return [content.slice(inline[0].length), inline[0]]
+    return {
+      xml_content: content.slice(inline[0].length),
+      xml_pop_object: inline[0],
+    }
   }
   // Match a parent object
   const obj = content.match(`${objStart}[^]+?</${objStart.slice(1)}>`)
@@ -157,9 +160,11 @@ function xmlToJsBuild(nextXml) {
  * @returns {import('./prototyping').XMLJS}
  */
 function toJs(xmlStr) {
-  return xmlToJsBuild({
-    xml_pop_object: xmlStr,
+  const str = `<root>${xmlStr}</root>`
+  const res = xmlToJsBuild({
+    xml_pop_object: str,
   })
+  return res.children.length == 1 ? res.children[0] : res.children
 }
 
 module.exports = {

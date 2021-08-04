@@ -168,3 +168,22 @@ test('Check if we can transform to js 7', () => {
     ],
   })
 })
+
+test('Check if we can transform to js 8', () => {
+  const content = `<gu ok="one" nok="two"/><gu ok="one" nok="two"/>`
+  const js = toJs(content)
+  expect(js).toStrictEqual([
+    {
+      tag: 'gu',
+      xmlTag: '<gu ok="one" nok="two"/>',
+      params: { ok: 'one', nok: 'two' },
+      children: [],
+    },
+    {
+      tag: 'gu',
+      xmlTag: '<gu ok="one" nok="two"/>',
+      params: { ok: 'one', nok: 'two' },
+      children: [],
+    },
+  ])
+})
